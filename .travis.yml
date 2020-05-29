@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run fiialo/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "eb_app"
+  env: "EbApp-env"
+  bucket_name: "elasticbeanstalk-us-east-1-485150151889"
+  bucket_path: "eb_app"
+  on:
+    branch: master
+  acess_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_KEY"
